@@ -1,0 +1,56 @@
+/***** Media queries *****/
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 480px) {
+	.swipeLeft{
+		position: relative;
+		top: 150px;
+		left: 0;
+	}
+	.swipeRight{
+		position: relative;
+		top: 150px;
+		left: 0;
+	}
+
+	.pushRight{
+		float: right !important;
+	}
+
+	.pushLeft{
+		float: left !important;
+	}
+	
+	.social-login{
+		margin-top: 15px;
+	}
+
+	.btn-social {
+		display: block;
+		width: 100%;
+	}
+
+}
+
+@media (max-width: 320px) {
+	.swipeLeft{
+		position: relative;
+		top: 150px;
+		left: 0;
+	}
+	.swipeRight{
+		position: relative;
+		top: 150px;
+		left: 0;
+	}
+}
+
