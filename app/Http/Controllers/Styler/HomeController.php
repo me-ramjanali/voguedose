@@ -18,7 +18,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('styler');
         if(Auth::guard('styler')->check()){
             $newOrders = Orders::select('orders.*', 'customer_name as user')
                                 ->where('process_status', 0)

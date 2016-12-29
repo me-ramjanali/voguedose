@@ -24,20 +24,33 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/order', 'OrderController@add_order');
 });
 // management part
-Route::get('admin/login', 'Admin\AuthController@showLoginForm');
+Route::get('admin/login', 'Admin\AuthController@showLoginForm')->middleware('adminLoggedIn');
 Route::post('admin/login', 'Admin\AuthController@login');
+// admin password reset
+Route::post('admin/password/email','Admin\PasswordController@sendResetLinkEmail');
+Route::post('admin/password/reset','Admin\PasswordController@reset');
+Route::get('admin/password/reset/{token?}','Admin\PasswordController@showResetForm');
+
 Route::group(['middleware' => ['admin']], function () {
 	Route::get('/admin', 'Admin\HomeController@index');
-
 	Route::get('admin/logout', 'Admin\AuthController@logout');
-	// Route::get('admin/register', 'Admin\AuthController@showRegistrationForm');
-
-	// Route::post('admin/register', 'Admin\AuthController@register');
 	Route::get('admin/dashboard', 'Admin\HomeController@index');
+	Route::get('admin/profile', 'Admin\ProfileController@my_profile');
+	Route::post('admin/check_username', 'Admin\ProfileController@check_username');
+	Route::post('admin/check_email', 'Admin\ProfileController@check_email');
+	Route::post('admin/update_profile', 'Admin\ProfileController@update_profile');
+	Route::get('admin/in_progress', 'Admin\OrderController@on_process');
+	Route::get('admin/details/{order_id}', 'Admin\OrderController@order_details');
+	Route::get('admin/completed', 'Admin\OrderController@completed_orders');
+	Route::get('admin/inventory', 'Admin\ProductController@inventory');
+	Route::post('admin/add_product', 'Admin\ProductController@createProduct');
+	Route::post('admin/update_product/{product_id}', 'Admin\ProductController@updateProduct');
+	Route::post('admin/get_dose_no', 'Admin\ProductController@get_dose_no');
+	Route::post('admin/check_order_no', 'Admin\ProductController@check_order_no');
+	Route::post('admin/add_to_list', 'Admin\ProductController@add_to_list');
 });
 // styler section
-Route::get('/styler', 'Styler\HomeController@index');
-Route::get('styler/login', 'Styler\AuthController@showLoginForm');
+Route::get('styler/login', 'Styler\AuthController@showLoginForm')->middleware('stylerLoggedIn');
 Route::post('styler/login', 'Styler\AuthController@login');
 // styler password reset
 Route::post('styler/password/email','Styler\PasswordController@sendResetLinkEmail');
@@ -45,6 +58,7 @@ Route::post('styler/password/reset','Styler\PasswordController@reset');
 Route::get('styler/password/reset/{token?}','Styler\PasswordController@showResetForm');
 
 Route::group(['middleware' => ['styler']], function () {
+	Route::get('/styler', 'Styler\HomeController@index');
 	Route::get('styler/logout', 'Styler\AuthController@logout');
 	// Route::get('styler/register', 'Styler\AuthController@showRegistrationForm');
 	// Route::post('styler/register', 'Styler\AuthController@register');

@@ -18,7 +18,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
         if(Auth::guard('admin')->check()){
             $newOrders = Orders::select('orders.*', 'customer_name as user')
                                 ->where('process_status', 0)
