@@ -25,8 +25,8 @@
     height: 40px;
     margin: 15px 30px !important;
     padding: 8px 0 !important;
-    width: 150px;
     text-align: center;
+    width: 150px;
 }
  .my-profile-btn a{
   color: #fff;
@@ -67,9 +67,31 @@
   font-size: 12px;
   font-weight: bold;
 }
+.sidebar-nav {
+    background: #f2f2f2 none repeat scroll 0 0 !important;
+    position: static !important;
+}
+.sidebar-nav li a {
+    color: #333 !important;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 29px;
+}
+.metismenu li li:hover, .metismenu li li:hover a, .metismenu li li a:hover {
+  background: none !important;
+
+}
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #000 !important;
+    background: transparent !important;
+}
 .activeli, .activeli a {
     background: #7f7f7f none repeat scroll 0 0;
     color: #fff !important;
+}
+.metismenu .arrow {
+    line-height: 3 !important;
 }
 
 

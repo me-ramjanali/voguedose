@@ -14,6 +14,8 @@
             <p>
                 What if everything in your wardrobe looked great on you? 
                 <br>
+                At Voguedose, that is what we aim to achieve.
+                <br>
                 Voguedose tries to understand you, your preferences, your lifestyle and puts together a customised Dose, at your budget so that You look your best.
             </p>
         </div>
@@ -46,7 +48,7 @@
         <div class="medium-6 columns animate pushRight" data-animation="flipInY">
             <div class="hidden-sm hidden-xs" style="margin-top:18%;"></div>
             <h6>STEP 2:</h6>
-            <h5>Receive 5-8 personalized pieces, delivered to your door</h5>
+            <h5>Receive 8-10 personalized pieces, delivered to your door</h5>
             <p>
                 Try on and discover styles hand-picked to fit you, your budget and your preferences.
             </p>
@@ -66,7 +68,7 @@
         <div class="medium-6 columns animate pushRight" data-animation="flipInY">
             <div class="hidden-sm hidden-xs" style="margin-top:18%;"></div>
             <h6>STEP 2:</h6>
-            <h5>Receive 5-8 personalized pieces, delivered to your door</h5>
+            <h5>Receive 8-10 personalized pieces, delivered to your door</h5>
             <p>
                 Try on and discover styles hand-picked to fit you, your budget and your preferences.
             </p>
@@ -432,7 +434,7 @@
                     type:"POST",
                     url: "{{ url('/user_login') }}",
                     data: { email: $("#loginForm input[name='email']").val(), password: $("#loginForm input[name='password']").val(), '_token': "{{ csrf_token() }}"  },
-                    dataType: "text",
+                    // dataType: "json",
                     success: function (rsp) {
                         if( rsp == "success" )
                             location.href = "{{ url('/create_style_profile') }}";

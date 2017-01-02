@@ -411,8 +411,7 @@
         <div class="col-md-9 products-pagination text-right">
             <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-chevron-left"></i> Back</a>
             @if($order_info->process_status == 0)
-            <a id="accept" href="{{ URL::to('admin/accept/'.$order_info->id) }}" class="btn btn-success"><i class="fa fa-check-circle"></i> Acceept</a>
-            <a id="reject" href="{{ URL::to('admin/reject/'.$order_info->id) }}" class="btn btn-inverse"><i class="fa fa-trash-o"></i>  Decline</a>
+            <a id="assign" href="#" class="btn btn-success"><i class="fa fa-check-circle"></i> Assign</a>
             @endif
         </div>
     </div>

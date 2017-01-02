@@ -45,8 +45,7 @@
                             <td>{{ date("d-M-y", strtotime($req->target_date)) }}</td>
                             <td><a href="{{ URL::to('admin/details/'.$req->id) }}" class="btn btn-danger"><i class="fa fa-link"></i> View Details</a></td>
                             @if($req->process_status == 0)
-                            <td><a id="accept" href="{{ URL::to('admin/accept/'.$req->id) }}" class="btn btn-success"><i class="fa fa-check-circle"></i> Acceept</a></td>
-                            <td><a id="reject" href="{{ URL::to('admin/reject/'.$req->id) }}" class="btn btn-inverse"><i class="fa fa-trash-o"></i>  Decline</a></td>
+                            <td><a id="assign" href="{{ URL::to('admin/accept/'.$req->id) }}" class="btn btn-success"><i class="fa fa-check-circle"></i> Assign</a></td>
                             @endif
                         </tr>
                         @endforeach

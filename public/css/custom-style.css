@@ -32,7 +32,7 @@ background-color: #f9f9f9;
 }
 
 .ques-step-six{
-  background: url(../../assets/img/whoweare-bg.png) #fff;
+  background: url(../img/whoweare-bg.png) #fff;
   background-position: right bottom;
   background-repeat: no-repeat;             
 }
@@ -597,7 +597,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fce08d', end
   border-radius: 3px;
   margin-bottom: 30px;
   text-align: center;
-  min-height: 175px;
+  height: 175px;
   display: table;
 }
 
@@ -608,8 +608,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fce08d', end
 
 .quote a{
 	color: #669C93;
-	font-size: 22px;
-	font-weight: 400;
 	font-family: "Montserrat", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 }
 

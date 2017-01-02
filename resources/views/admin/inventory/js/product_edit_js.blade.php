@@ -71,7 +71,7 @@
 				contentType: false,
     			processData: false,
     			dataType : 'json',
-		        url: "{!! URL::to('styler/update_product/"+product_id+"') !!}",
+		        url: "{!! URL::to('admin/update_product/"+product_id+"') !!}",
 		        data: formData,
 		        success: function () {
 		        	alert("Product Update successfully.");

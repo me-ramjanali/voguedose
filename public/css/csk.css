@@ -1051,9 +1051,7 @@ ul.dropdown-menu li a {
 .sidebar-nav ul li li.active a {
 	background: rgba(0,0,0,0.5);
 }
-.sidebar-nav ul li li {
-	border-bottom: 1px solid rgba(255,254,255,0.05);
-}
+
 ul.metismenu li ul {
 	border-left: 3px solid rgba(246,173,185,1);
 }
@@ -1224,7 +1222,7 @@ ul.metismenu li ul {
 	background: rgba(0, 0, 0, 0.2);
 }
 .sidebar-nav ul ul a {
-	padding: .2em 2em;
+	padding: 0 2em;
 	background-color: #3a3f51;
 }
 .sidebar-nav ul a {
@@ -7353,6 +7351,6 @@ Bootstrap '.img-circle' will not work
 .rightPanel, .mapael .map  {
     border-radius: 0px;
  }
-.modal-content .btn {
+.modal-content .modal-footer .btn {
   margin: 0px 5px !important;
 }

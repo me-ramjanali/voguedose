@@ -608,7 +608,7 @@ header.dark,
     margin:-32px 0 0 -32px; /* is width and height divided by two */
     width: 64px;
     height: 64px;
-    background: url(../../assets/img/preloader.png) #669C93;
+    background: url(../img/preloader.png) #669C93;
     background-repeat: no-repeat;
     -webkit-animation: rotateplane 1.2s infinite ease-in-out;
     animation: rotateplane 1.2s infinite ease-in-out;
@@ -896,7 +896,7 @@ header.dark,
    ========================================================================== */
 
 section#about{
-    background: url(../../assets/img/whoweare-bg.png) #fff;
+    background: url(../img/whoweare-bg.png) #fff;
     background-repeat: no-repeat;
     background-position: center right;
 }

@@ -71,7 +71,7 @@
 				contentType: false,
     			processData: false,
     			dataType : 'json',
-		        url: "{{ URL::to('styler/add_product') }}",
+		        url: "{{ URL::to('admin/add_product') }}",
 		        data: formData,
 		        success: function () {
 		        	alert("Product successfully added");

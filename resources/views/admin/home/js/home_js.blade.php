@@ -1,14 +1,7 @@
 <script>
     $(document).ready(function() {
-        $('a#accept').on('click', function(){
-            if (confirm('Are you sure want to accept?')) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-        $('a#reject').on('click', function(){
-            if (confirm('Are you sure want to decline?')) {
+        $('a#assign').on('click', function(){
+            if (confirm('Are you sure want to assign?')) {
                 return true;
             } else {
                 return false;

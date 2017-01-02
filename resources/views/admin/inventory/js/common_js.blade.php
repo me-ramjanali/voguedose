@@ -4,7 +4,7 @@
 			$('#suggestions_'+counter).fadeOut();
 		} else {
 			input.addClass('load');
-			$.post("{{ url('styler/get_dose_no') }}", {'queryString': JSON.stringify(inputString), 'counter': counter, '_token': "{{ csrf_token() }}"}, function(data){
+			$.post("{{ url('admin/get_dose_no') }}", {'queryString': JSON.stringify(inputString), 'counter': counter, '_token': "{{ csrf_token() }}"}, function(data){
 				if(data.length >0) {
 					$('#suggestions_'+counter).fadeIn();
 					$('#suggestionsList_'+counter).html(data);
@@ -46,14 +46,14 @@
 			id = $(this).attr('id');
 			value = $('input#'+id).val();
 			product_id = $('input#product_id_'+id).val();
-			$.post("{{ url('styler/check_order_no') }}", {'order_no': JSON.stringify(value), '_token': "{{ csrf_token() }}"}, function(data){
+			$.post("{{ url('admin/check_order_no') }}", {'order_no': JSON.stringify(value), '_token': "{{ csrf_token() }}"}, function(data){
 				if(data == 1) {
 					alert('Invalid dose ID!');
 					$('.add_product').prop('disabled', false).text('Add');
 					$('input#'+id).focus();
 					return false;
 				}else{
-					$.post("{{ url('styler/add_to_list') }}", {'order_no': JSON.stringify(value), 'product_id': product_id, '_token': "{{ csrf_token() }}"}, function(data){
+					$.post("{{ url('admin/add_to_list') }}", {'order_no': JSON.stringify(value), 'product_id': product_id, '_token': "{{ csrf_token() }}"}, function(data){
 						if(data == 1) {
 							alert('Product Added to list');
 							location.reload();

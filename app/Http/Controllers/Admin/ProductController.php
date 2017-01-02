@@ -69,7 +69,7 @@ class ProductController extends Controller
 			'size' => trim($data->size),
 			'price' => trim($data->price),
 			'picture' => json_encode($file_names, JSON_FORCE_OBJECT),
-			'user_type' => 1,
+			'user_type' => 2,
 			'created_by' => Auth::guard('admin')->user()->id
         ]);
     	echo 'true';
