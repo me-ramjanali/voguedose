@@ -608,7 +608,7 @@ header.dark,
     margin:-32px 0 0 -32px; /* is width and height divided by two */
     width: 64px;
     height: 64px;
-    background: url(../img/preloader.png) #669C93;
+    background: url(../../img/preloader.png) #669C93;
     background-repeat: no-repeat;
     -webkit-animation: rotateplane 1.2s infinite ease-in-out;
     animation: rotateplane 1.2s infinite ease-in-out;
@@ -763,6 +763,7 @@ header.dark,
 		-webkit-transform: translateY(-10px);
 		-ms-transform: translateY(-10px);
 		transform: translateY(-10px);
+                top: 46px;
 	}
 	.top-bar .top-bar-section .has-dropdown.hover>.dropdown,
 	.top-bar .top-bar-section .has-dropdown.not-click:hover>.dropdown {
@@ -786,7 +787,7 @@ header.dark,
         background: #1d1d1d;
     }
     .top-bar .top-bar-section .has-dropdown > a:after {
-        top: 30px
+        top: 15px
     }
     .top-bar input, .top-bar .button, .top-bar button {
         top: 16px;
@@ -795,8 +796,8 @@ header.dark,
         background: #1d1d1d;
     }
     .top-bar-section .dropdown li:not(.has-form):not(.active):hover > a:not(.button) {
-        background-color: #555555;
-        background: #272727;
+        background-color: #79A9A4;
+        background: #79A9A4;
     }
 }
 
@@ -896,7 +897,7 @@ header.dark,
    ========================================================================== */
 
 section#about{
-    background: url(../img/whoweare-bg.png) #fff;
+    background: url(../../img/whoweare-bg.png) #fff;
     background-repeat: no-repeat;
     background-position: center right;
 }

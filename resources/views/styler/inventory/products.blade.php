@@ -15,7 +15,7 @@
 			</button>
 
 			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-top: 50px;">
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" style="margin-top: 50px;">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<form class="form-horizontal" id="add_product" method="post" enctype="multipart/form-data">
@@ -206,7 +206,7 @@
 				</div>
 			</div>
 			<!-- Modal -->
-			<div id="feedbackModal_{{ $type->type.'_'.$i }}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div id="feedbackModal_{{ $type->type.'_'.$i }}" class="modal fade bs-example-modal-lg" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel">
 				<div class="feedback-modal-dialog modal-dialog modal-lg" role="document">
 					<div class="modal-content" style="width: 50%;margin: 12% auto;">
 						<div class="modal-body">

@@ -19,8 +19,17 @@
                 <li><a href="#team" data-scroll>OUR STYLISTS</a></li>
                 @if(\Auth::guard()->check() == false)
                     <li><a href="#contact" data-scroll>REGISTRATION</a></li>
-                    {{-- <li class="has-form hide-for-medium-only"><a href="{{ URL::to('order') }}" class="button brand round">Get Started</a></li> --}}
-                    <li class="has-form hide-for-medium-only"><a href="#" data-reveal-id="myModal" class="button brand round">Get Started</a></li>
+                    <li class="has-dropdown hide-for-medium-only">
+                        <a href="#" class="button brand round">Get Started</a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="#" data-reveal-id="myModal">Sign In</a>
+                            </li>
+                            <li>
+                                <a href="#contact"  data-scroll>Sign Up</a>
+                            </li>
+                        </ul>
+                    </li>
                 @else
                     <li><a href="{{ URL::to('order') }}" data-scroll>Create Style Profile</a></li>
                     <li class="has-form hide-for-medium-only"><a href="{{ URL::to('logout') }}"  class="button brand round">SIGN OUT</a></li>

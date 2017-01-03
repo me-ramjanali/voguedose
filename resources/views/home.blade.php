@@ -401,7 +401,7 @@
         $.ajaxSetup({
             headers:
             {
-                'X-CSRF-Token': $('input[name="_token"]').val()
+                'X-CSRF-Token': "{{ csrf_token() }}"
             }
         });
 
@@ -433,7 +433,7 @@
                 $.ajax({
                     type:"POST",
                     url: "{{ url('/user_login') }}",
-                    data: { email: $("#loginForm input[name='email']").val(), password: $("#loginForm input[name='password']").val(), '_token': "{{ csrf_token() }}"  },
+                    data: { email: $("#loginForm input[name='email']").val(), password: $("#loginForm input[name='password']").val()},
                     // dataType: "json",
                     success: function (rsp) {
                         if( rsp == "success" )

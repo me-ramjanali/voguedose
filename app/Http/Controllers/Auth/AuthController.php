@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -99,9 +99,9 @@ class AuthController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
 
-    public function user_login()
+    public function user_login(Request $request)
     {
-        if (Auth::attempt(['email' => Request::get('email'), 'password' => Request::get('password')])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             echo 'success';
         }else{
             echo 'error';

@@ -13,8 +13,9 @@
 				<li class="@if($active == 'user_mangement')active @endif">
 					<a aria-expanded="true" href="#">User Management<i class="fa arrow fa-fw"></i></a>
 					<ul aria-expanded="false" class="collapse" style="height: 0px;">
-                        <li><a href="#">Dashboard.1</a></li>
-                        <li><a href="#">Dashboard.1</a></li>
+                        <li><a href="{{ URL::to('admin/user') }}">Admin</a></li>
+                        <li><a href="{{ URL::to('admin/styler') }}">Styler</a></li>
+                        <li><a href="{{ URL::to('admin/customer') }}">Customer</a></li>
                     </ul>
 				</li>
 				<li class="@if($active == 'consumer')active @endif"><a href="{{ URL::to('admin/consumer') }}">Consumer data</a></li>
