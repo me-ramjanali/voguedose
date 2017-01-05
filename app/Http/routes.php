@@ -48,6 +48,22 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::post('admin/get_dose_no', 'Admin\ProductController@get_dose_no');
 	Route::post('admin/check_order_no', 'Admin\ProductController@check_order_no');
 	Route::post('admin/add_to_list', 'Admin\ProductController@add_to_list');
+	Route::post('admin/assign_dose', 'Admin\OrderController@assign_dose');
+	Route::get('admin/user', 'Admin\AdminUserController@index');
+	Route::get('admin/add_user', 'Admin\AdminUserController@create_user_view');
+	Route::post('admin/create_user', 'Admin\AdminUserController@create_user');
+	Route::get('admin/edit_user/{user_id}', 'Admin\AdminUserController@edit_user');
+	Route::post('admin/edit_user/{user_id}', 'Admin\AdminUserController@update_user');
+	Route::get('admin/delete_user/{user_id}', 'Admin\AdminUserController@delete_user');
+	Route::get('admin/customer', 'Admin\CustomerController@index');
+	Route::get('admin/block_customer/{user_id}', 'Admin\CustomerController@block_customer');
+	Route::get('admin/unblock_customer/{user_id}', 'Admin\CustomerController@unblock_customer');
+	Route::get('admin/styler', 'Admin\StylerController@index');
+	Route::get('admin/add_styler', 'Admin\StylerController@create_styler_view');
+	Route::post('admin/create_styler', 'Admin\StylerController@create_styler');
+	Route::get('admin/edit_styler/{styler_id}', 'Admin\StylerController@edit_styler');
+	Route::post('admin/edit_styler/{styler_id}', 'Admin\StylerController@update_styler');
+	Route::get('admin/delete_styler/{styler_id}', 'Admin\StylerController@delete_styler');
 });
 // styler section
 Route::get('styler/login', 'Styler\AuthController@showLoginForm')->middleware('stylerLoggedIn');

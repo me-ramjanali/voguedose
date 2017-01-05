@@ -74,15 +74,15 @@
                                 <h3 class="name">{{ $styler->name }}</h3>
                                 <h6 class="position">US</h6>
                                 <input type="hidden" id="styler_id" name="styler_id" value="{{ $styler->id }}">
-                                <input type="hidden" id="dose_id" name="dose_id" />
                             </div>
+                            <input type="hidden" id="dose_id" name="dose_id" />
                         </div>
                         @endforeach
                     </div>
                 </div>
                 <div class="modal-footer" style="text-align: center;">
                     <button id="styler_modal_close" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Assign</button>
+                    <button id="assign_to_styler" type="button" class="btn btn-success">Assign</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

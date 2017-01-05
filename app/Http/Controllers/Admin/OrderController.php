@@ -83,4 +83,18 @@ class OrderController extends Controller
         $this->data['active'] = 'completed';
         return view('admin/order/completed_order_list')->with($this->data);
     }
+
+    public function assign_dose(Request $request)
+    {
+        Orders::where('order_id', $request->order_id)
+                ->update(
+                    [
+                        'assign_to' => $request->styler_id, 
+                        'assign_on' => date('Y-m-d H:i:s'), 
+                        'assign_by' => Auth::guard('admin')->user()->id,
+                        'process_status' => '1'
+                    ]
+                );
+        echo 'true';
+    }
 }

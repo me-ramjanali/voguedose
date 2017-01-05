@@ -79,6 +79,11 @@ return [
             'root'   => public_path() . '/uploads/admin_picture',
         ],
 
+        'user_picture' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/uploads/user_picture',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

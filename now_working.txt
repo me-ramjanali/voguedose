@@ -12,3 +12,6 @@ admin/parts/sidebar,
 css/custom.css
 
 styler/homecontroller
+
+ALTER TABLE `voguedose`.`users` ADD COLUMN `active` TINYINT(1) NULL AFTER `updated_at`;
+ALTER TABLE `voguedose`.`users` CHANGE `active` `active` TINYINT(1) DEFAULT 1 NULL;

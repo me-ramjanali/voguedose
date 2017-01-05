@@ -2,7 +2,7 @@
 <nav class="navbar navbar-fixed-top notification navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="{{ URL::to('admin/dashboard') }}" class="navbar-brand">
+            <a href="{{ URL::to('admin') }}" class="navbar-brand">
                 <img src="{{ URL::asset('images/logo.png') }}" class="img-responsive" alt=" admin logo">
                 <span class="csk-brand">
                     <img src="{{ URL::asset('images/logo-icon.png') }}" class="img-responsive" alt="mobile logo" >
