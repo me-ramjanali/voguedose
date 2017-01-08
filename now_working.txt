@@ -15,3 +15,8 @@ styler/homecontroller
 
 ALTER TABLE `voguedose`.`users` ADD COLUMN `active` TINYINT(1) NULL AFTER `updated_at`;
 ALTER TABLE `voguedose`.`users` CHANGE `active` `active` TINYINT(1) DEFAULT 1 NULL;
+ALTER TABLE `voguedose`.`stylers` ADD COLUMN `country` VARCHAR(20) NULL AFTER `password`; 
+ALTER TABLE `voguedose`.`stylers` COLLATE=utf8_general_ci; 
+ALTER TABLE stylers CONVERT TO CHARACTER SET utf8;
+ALTER TABLE `voguedose`.`countries` ENGINE=INNODB; 
+ALTER TABLE `voguedose`.`stylers` COLLATE=utf8_general_ci; 

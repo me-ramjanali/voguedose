@@ -52,6 +52,25 @@
                     </div>
                 </div>
 
+                <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
+                    <label for="country" class="col-md-2 control-label">Country</label>
+
+                    <div class="col-md-4">
+                        <select class="form-control" name="country" id="country">
+                            <option value="" @if(old('country') == '') selected="selected" @endif>Select country</option>
+                            @foreach($countries as $country)
+                                <option @if(old('country') == $country->code) selected="selected" @endif value="{{$country->code}}">{{$country->name}}</option>
+                            @endforeach
+                        </select>
+
+                        @if ($errors->has('country'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('country') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email" class="col-md-2 control-label">E-Mail Address</label>
 

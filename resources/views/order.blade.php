@@ -1593,8 +1593,7 @@
 		        url: "{{ URL::to('order') }}",
 		        data: formData,
 		        success: function () {
-		        	alert("Thank You for creating your Style Profile. We will contact you shortly via email for delivery instructions and any other questions that we have.");
-		        	location.href="{{ URL::to('/') }}"
+		        	location.href="{{ URL::to('/success') }}"
 		        }
 	      	});
 

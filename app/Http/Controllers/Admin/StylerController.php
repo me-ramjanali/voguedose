@@ -12,6 +12,7 @@ use App\Orders;
 use Image;
 use Auth;
 use File;
+use DB;
 
 class StylerController extends Controller
 {
@@ -28,7 +29,9 @@ class StylerController extends Controller
 
     public function index()
     {
-    	$stylers = Styler::orderBy('created_at', 'desc')
+    	$stylers = Styler::select('stylers.*', 'countries.name as country')
+                        ->join('countries', 'stylers.country', '=', 'countries.code')
+                        ->orderBy('stylers.created_at', 'desc')
                         ->get();
         $this->data['stylers'] = $stylers;
         $this->data['active'] = 'styler';
@@ -37,6 +40,8 @@ class StylerController extends Controller
 
     public function create_styler_view(Request $request)
     {
+        $countries = DB::table('countries')->get();
+        $this->data['countries'] = $countries;
         $this->data['active'] = 'styler';
     	return view('admin/styler/styler_create_form')->with($this->data);
     }
@@ -46,9 +51,10 @@ class StylerController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:admins',
-            'stylername' => 'required|max:255|unique:admins',
+            'username' => 'required|max:255|unique:admins',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6|same:password', 
+            'country' => 'required',
             'picture' => 'image'
         ]);
     }
@@ -64,15 +70,16 @@ class StylerController extends Controller
     	$file_name = '';
     	if($request->hasFile('picture')){
             $rename = time() . uniqid() . '.' .$file->extension();
-            $file->move('uploads/admin_picture', $rename);
-        	$image = Image::make(sprintf('uploads/admin_picture/%s', $rename))->resize(100, 107)->save();
+            $file->move('uploads/styler_picture', $rename);
+        	$image = Image::make(sprintf('uploads/styler_picture/%s', $rename))->resize(100, 107)->save();
             $file_name = $rename;
         }
         $info = array(
         			'name' => $request->name,
-		            'name' => $request->stylername,
+		            'name' => $request->username,
 		            'email' => $request->email,
-		            'stylername' => $request->stylername,
+		            'username' => $request->username,
+                    'country' => $request->country,
 		            'password' => bcrypt($request->password),
         		);
        	if(!empty($file_name)){
@@ -89,6 +96,8 @@ class StylerController extends Controller
     	$styler = Styler::find($styler_id);
         $this->data['styler'] = $styler;
         $this->data['active'] = 'styler';
+        $countries = DB::table('countries')->get();
+        $this->data['countries'] = $countries;
     	return view('admin/styler/styler_edit')->with($this->data);
     }
 
@@ -97,7 +106,8 @@ class StylerController extends Controller
     	$validator = Validator::make($request->all(), [
 			            'name' => 'required|max:255',
 			            'email' => 'required|email|max:255|unique:admins,email,'.$styler_id,
-			            'stylername' => 'required|max:255|unique:admins,stylername,'.$styler_id,
+			            'username' => 'required|max:255|unique:admins,username,'.$styler_id,
+                        'country' => 'required',
 			            'password' => 'min:6|confirmed',
 			            'password_confirmation' => 'min:6|same:password', 
 			            'picture' => 'image'
@@ -112,20 +122,21 @@ class StylerController extends Controller
     		// remove previous image
     		$styler = Styler::where('id', $styler_id)->first();
             $image = $styler->picture;
-            $file_path = public_path("uploads/admin_picture/{$image}");
+            $file_path = public_path("uploads/styler_picture/{$image}");
             if(File::exists($file_path)) File::delete($file_path);
 
             // uploading image
             $rename = time() . uniqid() . '.' .$file->extension();
-            $file->move('uploads/admin_picture', $rename);
-        	$image = Image::make(sprintf('uploads/admin_picture/%s', $rename))->resize(100, 107)->save();
+            $file->move('uploads/styler_picture', $rename);
+        	$image = Image::make(sprintf('uploads/styler_picture/%s', $rename))->resize(100, 107)->save();
             $file_name = $rename;
         }
         $info = array(
         			'name' => $request->name,
-		            'name' => $request->stylername,
+		            'name' => $request->username,
 		            'email' => $request->email,
-		            'stylername' => $request->stylername,
+		            'username' => $request->username,
+                    'country' => $request->country,
         		);
         if(!empty($request->password)){
         	$info['password'] = bcrypt($request->password);

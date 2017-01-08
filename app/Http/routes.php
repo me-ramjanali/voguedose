@@ -22,6 +22,7 @@ Route::post('/check_user_email', 'Auth\AuthController@check_user_email');
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('/create_style_profile', 'OrderController@index');
 	Route::post('/order', 'OrderController@add_order');
+	Route::get('/success', 'OrderController@success');
 });
 // management part
 Route::get('admin/login', 'Admin\AuthController@showLoginForm')->middleware('adminLoggedIn');
@@ -76,8 +77,6 @@ Route::get('styler/password/reset/{token?}','Styler\PasswordController@showReset
 Route::group(['middleware' => ['styler']], function () {
 	Route::get('/styler', 'Styler\HomeController@index');
 	Route::get('styler/logout', 'Styler\AuthController@logout');
-	// Route::get('styler/register', 'Styler\AuthController@showRegistrationForm');
-	// Route::post('styler/register', 'Styler\AuthController@register');
 	Route::get('styler/dashboard', 'Styler\HomeController@index');
 	Route::get('styler/details/{order_id}', 'Styler\OrderController@order_details');
 	Route::get('styler/accept/{order_id}', 'Styler\OrderController@order_accept');

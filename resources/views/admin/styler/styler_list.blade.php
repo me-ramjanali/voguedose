@@ -36,11 +36,12 @@
                 <table class="table table-striped table-bordered queue-table datatable">
                     <thead>
                         <tr>
-                            <th style="width:10%" class="text-center">SL</th>
+                            <th style="width:3%" class="text-center">SL</th>
                             <th style="width:20%" class="text-center">Name</th>
+                            <th style="width:17%" class="text-center">Country</th>
                             <th style="width:20%" class="text-center">Email</th>
                             <th style="width:20%" class="text-center">Picture</th>
-                            <th style="width:30%" class="text-center" colspan="3">Action</th>
+                            <th style="width:20%" class="text-center" colspan="3">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@
                         <tr>
                             <td>{{ $i }}</td>
                             <td>{{ $req->name }}</td> 
+                            <td>{{ $req->country }}</td>
                             <td>{{ $req->email }}</td> 
                             <td><img class="img-circle admin_list_img" src="{{ URL::asset('uploads/styler_picture/'.$req->picture) }}" alt="{{$req->name}} image"></td>
                             <td><a href="{{ URL::to('admin/edit_styler/'.$req->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a></td>

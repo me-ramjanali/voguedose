@@ -56,7 +56,10 @@
     </div>
     <!-- #row -->
     <?php 
-        $stylers = DB::table('stylers')->get();
+        $stylers = DB::table('stylers')
+                        ->select('stylers.*', 'countries.name as country')
+                        ->join('countries', 'stylers.country', '=', 'countries.code')
+                        ->get();
     ?>
     <div id="accept-modal" class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog" role="document">
@@ -72,7 +75,7 @@
                             <div class="team-person">
                                 <img class="img-circle" src="{{ URL::asset('uploads/styler_picture/'.$styler->picture) }}" alt="{{ $styler->name }}">
                                 <h3 class="name">{{ $styler->name }}</h3>
-                                <h6 class="position">US</h6>
+                                <h6 class="position">{{ $styler->country }}</h6>
                                 <input type="hidden" id="styler_id" name="styler_id" value="{{ $styler->id }}">
                             </div>
                             <input type="hidden" id="dose_id" name="dose_id" />

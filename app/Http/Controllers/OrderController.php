@@ -75,4 +75,12 @@ class OrderController extends Controller
 
         echo true;
     }
+
+    public function success()
+    {
+        $data = array(
+                    'meta' => 'Order'
+                );
+        return view('order_success')->with($data);
+    }
 }

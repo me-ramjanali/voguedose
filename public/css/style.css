@@ -1974,3 +1974,24 @@ xkeyframes
 .social-login ul li a:hover i.fa.fa-pinterest{
     background-color: #A81A20;
 }
+.alert-box {
+    padding: 1.3rem;
+    border-width: 0 0 0 0.35rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: #222222;
+}
+
+.alert-box.radius {
+    border-radius: 0.6rem;
+}
+
+.alert-box.success-msg {
+    border-left-color: #669C93;
+    background-color: #C9DAD7;
+}
+
+.alert-box.success-msg h3 {
+    font-size: 17px;
+    text-align: center;
+}
