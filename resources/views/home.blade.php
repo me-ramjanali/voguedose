@@ -341,17 +341,37 @@
     </section>
     <!--/ End Contact Section -->
 
-    <div id="myModal" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <div id="loginModal" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
         <h2 id="modalTitle" style="text-align:center; margin-bottom:30px">
             <span class="fa fa-sign-in"></span> Sign In
         </h2>
         <a class="close-reveal-modal" aria-label="Close" style="font-size:1.5rem">&#215;</a>
 
-        <form id="loginForm" method="post" class="form-ghost">
-            <input id="email" name="email" type="text" placeholder="Your Email" required style="margin-bottom:20px">
-            <input id="password" name="password" type="password" placeholder="Password" required style="margin-bottom:20px">
+        <form action="{{url('/login')}}" method="POST" id="loginForm" novalidate class="form-ghost form" role="form">
+            <div class="form-group" id="email-div">
+                {{ csrf_field() }}
+                <input id="email" type="email" placeholder="example@gmail.com" title="Please enter you email" required value="" name="email" class="form-control">
+                {{-- <div id="form-errors-email" class="has-error"></div> --}}
+                <span class="help-block">
+                    <strong id="form-errors-email"></strong>
+                </span>
+            </div>
+            {{-- <input id="email" name="email" type="text" placeholder="Your Email" required style="margin-bottom:20px"> --}}
+            <div class="form-group" id="password-div">
+                <input type="password" title="Please enter your password" placeholder="******" required value="" name="password" id="password" class="form-control">
+                <span class="help-block">
+                    <strong id="form-errors-password"></strong>
+                </span>
+            </div>
+            <div class="form-group" id="login-errors">
+                <span class="help-block">
+                    <strong id="form-login-errors"></strong>
+                </span>
+            </div>
+            {{-- <input id="password" name="password" type="password" placeholder="Password" required style="margin-bottom:20px"> --}}
             <div class="regBtn" style="text-align:center; margin-top:10px">
-                <input id="login_submit" type="submit" class="button medium" value="Submit">
+                {{-- <input id="login_submit" type="submit" class="button medium" value="Submit"> --}}
+                <button class="btn btn-login">Sign in</button>
             </div>
         </form>
         
@@ -405,44 +425,81 @@
             }
         });
 
-        $("#loginForm").validate({
-            errorElement:'span',
-            errorClass:'error',
-            rules: {
-                email: {  
-                    required: true,
-                    regex: {{ $EMAILREX }}
+        // $("#loginForm").validate({
+        //     errorElement:'span',
+        //     errorClass:'error',
+        //     rules: {
+        //         email: {  
+        //             required: true,
+        //             regex: {{ $EMAILREX }}
+        //         },
+        //         password:{
+        //             required: true,
+        //             minlength: {{ $PASSWORDLEN }}
+        //         }
+        //     },
+        //     messages:{
+        //         email: {
+        //             required: "Plaese input your mail address",
+        //             regex: "Plaese input valid mail address"
+        //         },
+        //         password:{
+        //             required: "Please input your password",
+        //             minlength: "Minimun length of your password must be {{ $PASSWORDLEN }} characters"
+        //         }
+        //     },
+        //     submitHandler: function(form, event) {
+        //         event.preventDefault();
+        //         $.ajax({
+        //             type:"POST",
+        //             url: "{{ url('/user_login') }}",
+        //             data: { email: $("#loginForm input[name='email']").val(), password: $("#loginForm input[name='password']").val()},
+        //             // dataType: "json",
+        //             success: function (rsp) {
+        //                 if( rsp == "success" )
+        //                     location.href = "{{ url('/create_style_profile') }}";
+        //                 else
+        //                     alert("Invalid Email or Password!");
+        //             }
+        //         });
+        //     }
+        // });
+
+        var loginForm = $("#loginForm");
+        loginForm.submit(function(e) {
+            e.preventDefault();
+            var formData = loginForm.serialize();
+            $('#form-errors-email').html("");
+            $('#form-errors-password').html("");
+            $('#form-login-errors').html("");
+            $("#email-div").removeClass("has-error");
+            $("#password-div").removeClass("has-error");
+            $("#login-errors").removeClass("has-error");
+            $.ajax({
+                url: "{{ URL::to('/login') }}",
+                type: 'POST',
+                data: formData,
+                success: function(data) {
+                    $('#loginModal').modal('hide');
+                    location.href = "{{ URL::to('/create_style_profile') }}";
                 },
-                password:{
-                    required: true,
-                    minlength: {{ $PASSWORDLEN }}
-                }
-            },
-            messages:{
-                email: {
-                    required: "Plaese input your mail address",
-                    regex: "Plaese input valid mail address"
-                },
-                password:{
-                    required: "Please input your password",
-                    minlength: "Minimun length of your password must be {{ $PASSWORDLEN }} characters"
-                }
-            },
-            submitHandler: function(form, event) {
-                event.preventDefault();
-                $.ajax({
-                    type:"POST",
-                    url: "{{ url('/user_login') }}",
-                    data: { email: $("#loginForm input[name='email']").val(), password: $("#loginForm input[name='password']").val()},
-                    // dataType: "json",
-                    success: function (rsp) {
-                        if( rsp == "success" )
-                            location.href = "{{ url('/create_style_profile') }}";
-                        else
-                            alert("Invalid Email or Password!");
+                error: function(data) {
+                    console.log(data.responseText);
+                    var obj = jQuery.parseJSON(data.responseText);
+                    if (obj.email) {
+                        $("#email-div").addClass("has-error");
+                        $('#form-errors-email').html(obj.email);
                     }
-                });
-            }
+                    if (obj.password) {
+                        $("#password-div").addClass("has-error");
+                        $('#form-errors-password').html(obj.password);
+                    }
+                    if (obj.error) {
+                        $("#login-errors").addClass("has-error");
+                        $('#form-login-errors').html(obj.error);
+                    }
+                }
+            });
         });
 
         $("#regForm").validate({

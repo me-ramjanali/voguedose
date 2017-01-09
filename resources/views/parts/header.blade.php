@@ -42,6 +42,7 @@
 
     {{-- scripts --}}
     <script src="{{ URL::asset('js/vendor/jquery.js') }}"></script>
+    <script src="{{ URL::asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('js/vendor/modernizr.js') }}"></script>
     <script src="{{ URL::asset('js/vendor/jquery.easing.min.js') }}"></script>
     <script src="{{ URL::asset('js/vendor/jquery.bxslider.min.js') }}"></script>

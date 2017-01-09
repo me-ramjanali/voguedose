@@ -23,7 +23,7 @@
                         <a href="#" class="button brand round">Get Started</a>
                         <ul class="dropdown">
                             <li>
-                                <a href="#" data-reveal-id="myModal">Sign In</a>
+                                <a href="#" data-reveal-id="loginModal">Sign In</a>
                             </li>
                             <li>
                                 <a href="#contact"  data-scroll>Sign Up</a>
