@@ -334,7 +334,9 @@
                     <input id="email" name="email" type="text" placeholder="Your Email" required>
                     <input id="password" name="password" type="password" placeholder="Password" required>
                     <input id="re_password" name="re_password" type="password" placeholder="Retype Password" required>
-                    <input type="submit" value="Let’s Start" class="button expand ghost small" tabindex="4">
+                    <button type="submit" id="sign-up" class="button expand ghost small ladda-button" data-style="zoom-in">
+                        <span class="ladda-label">Let’s Start</span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -350,28 +352,30 @@
         <form action="{{url('/login')}}" method="POST" id="loginForm" novalidate class="form-ghost form" role="form">
             <div class="form-group" id="email-div">
                 {{ csrf_field() }}
-                <input id="email" type="email" placeholder="example@gmail.com" title="Please enter you email" required value="" name="email" class="form-control">
+                <input id="email" type="email" placeholder="Enter Your email" title="Please enter you email" required value="" name="email" class="form-control">
                 {{-- <div id="form-errors-email" class="has-error"></div> --}}
-                <span class="help-block">
-                    <strong id="form-errors-email"></strong>
+                <span class="error" style="display: none;">
+                    <p id="form-errors-email"></p>
                 </span>
             </div>
             {{-- <input id="email" name="email" type="text" placeholder="Your Email" required style="margin-bottom:20px"> --}}
             <div class="form-group" id="password-div">
-                <input type="password" title="Please enter your password" placeholder="******" required value="" name="password" id="password" class="form-control">
-                <span class="help-block">
-                    <strong id="form-errors-password"></strong>
+                <input type="password" title="Please enter your password" placeholder="Enter your password" required value="" name="password" id="password" class="form-control">
+                <span class="error" style="display: none;">
+                    <p id="form-errors-password"></p>
                 </span>
             </div>
             <div class="form-group" id="login-errors">
-                <span class="help-block">
-                    <strong id="form-login-errors"></strong>
+                <span class="error" style="display: none;">
+                    <p id="form-login-errors"></p>
                 </span>
             </div>
             {{-- <input id="password" name="password" type="password" placeholder="Password" required style="margin-bottom:20px"> --}}
             <div class="regBtn" style="text-align:center; margin-top:10px">
                 {{-- <input id="login_submit" type="submit" class="button medium" value="Submit"> --}}
-                <button class="btn btn-login">Sign in</button>
+                <button id="form-submit" class="btn btn-login ladda-button" data-style="expand-right">
+                    <span class="ladda-label">Sign in</span>
+                </button>
             </div>
         </form>
         
@@ -468,10 +472,12 @@
         var loginForm = $("#loginForm");
         loginForm.submit(function(e) {
             e.preventDefault();
+            var l = Ladda.create(document.querySelector( '#form-submit' ));
+            l.start();
             var formData = loginForm.serialize();
-            $('#form-errors-email').html("");
-            $('#form-errors-password').html("");
-            $('#form-login-errors').html("");
+            $('#form-errors-email').html("").parent().hide();
+            $('#form-errors-password').html("").parent().hide();
+            $('#form-login-errors').html("").parent().hide();
             $("#email-div").removeClass("has-error");
             $("#password-div").removeClass("has-error");
             $("#login-errors").removeClass("has-error");
@@ -480,24 +486,30 @@
                 type: 'POST',
                 data: formData,
                 success: function(data) {
-                    $('#loginModal').modal('hide');
-                    location.href = "{{ URL::to('/create_style_profile') }}";
+                    window.location.href = "{{ URL::to('/create_style_profile') }}";
                 },
                 error: function(data) {
                     console.log(data.responseText);
                     var obj = jQuery.parseJSON(data.responseText);
                     if (obj.email) {
                         $("#email-div").addClass("has-error");
-                        $('#form-errors-email').html(obj.email);
+                        $('#form-errors-email').html(obj.email).parent().show();
+                    }else{
+                        $('#form-errors-email').parent().hide();
                     }
                     if (obj.password) {
                         $("#password-div").addClass("has-error");
-                        $('#form-errors-password').html(obj.password);
+                        $('#form-errors-password').html(obj.password).parent().show();
+                    }else{
+                        $('#form-errors-password').parent().hide();
                     }
                     if (obj.error) {
                         $("#login-errors").addClass("has-error");
-                        $('#form-login-errors').html(obj.error);
+                        $('#form-login-errors').html(obj.error).parent().show();
+                    }else{
+                        $('#form-login-errors').parent().hide();
                     }
+                    l.stop();
                 }
             });
         });
@@ -537,6 +549,17 @@
                     required: "Please type the same password again",
                     equalTo: "Please type the same password again"
                 }
+            }
+        });
+
+        $('#sign-up').on('click', function () { // fires on every keyup & blur
+            Ladda.bind(this);
+            var l = Ladda.create(this);
+            l.start();
+            $(this).addClass('singup_active');
+            if ($('#regForm').valid() == false) { // checks form for validity
+                l.stop();        // enables button
+                $(this).removeClass('singup_active');
             }
         });
     });

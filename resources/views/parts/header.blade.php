@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/custom-style.css') }}" />
     <!-- Responsive style -->
     <link rel="stylesheet" href="{{ URL::asset('css/responsive.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/ladda-themeless.min.css') }}">
 
     {{-- scripts --}}
     <script src="{{ URL::asset('js/vendor/jquery.js') }}"></script>
@@ -65,6 +66,8 @@
     <script src="{{ URL::asset('js/foundation.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('js/additional-methods.min.js') }}"></script>
+    <script src="{{ URL::asset('js/spin.min.js') }}"></script>
+    <script src="{{ URL::asset('js/ladda.min.js') }}"></script>
 </head>
 
 <body class="preload">

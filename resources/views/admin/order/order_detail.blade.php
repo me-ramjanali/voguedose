@@ -61,7 +61,7 @@
                                     <h5 style="color: #000;"><b>ABOUT Client's STYLE</b></h5>
                                     <tbody> 
                                         <tr> 
-                                            <td>Client's wardrobe full & can't find anything to wear</td>
+                                            <td>Client's wardrobe full &amp; can't find anything to wear</td>
                                             <td>: {{ $order_info->clothesInWardrobe }}</td> 
                                         </tr>
                                         <tr> 
@@ -70,7 +70,7 @@
                                         </tr>
                                         <tr> 
                                             <td>Which body type client more like</td>
-                                            <td>: {{ $order_info->bodyType }}</td> 
+                                            <td>: @if($order_info->bodyType == 'invt-triangle') Inverted Triangle @else {{ $order_info->bodyType }} @endif</td> 
                                         </tr>
                                     </tbody>
                                 </table>
@@ -249,7 +249,7 @@
                     </table>
 
                     <div class="user-his-button">
-                        <a href="user-history.php" class="btn btn-default">View User History</a>
+                        <a href="{{ url('admin/show_history/'.$order_info->requested_by) }}" class="btn btn-default">View User History</a>
                     </div>
                 </div>
             </div>

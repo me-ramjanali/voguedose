@@ -16,7 +16,6 @@ Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
 Route::get('/home', 'HomeController@index');
-Route::post('/user_login', 'Auth\AuthController@user_login');
 Route::post('/user_signup', 'Auth\AuthController@user_signup');
 Route::post('/check_user_email', 'Auth\AuthController@check_user_email');
 Route::group(['middleware' => ['auth']], function () {
@@ -65,6 +64,7 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::get('admin/edit_styler/{styler_id}', 'Admin\StylerController@edit_styler');
 	Route::post('admin/edit_styler/{styler_id}', 'Admin\StylerController@update_styler');
 	Route::get('admin/delete_styler/{styler_id}', 'Admin\StylerController@delete_styler');
+	Route::get('admin/consumer', 'Admin\ConsumerController@index');
 });
 // styler section
 Route::get('styler/login', 'Styler\AuthController@showLoginForm')->middleware('stylerLoggedIn');

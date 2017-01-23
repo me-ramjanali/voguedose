@@ -10,7 +10,7 @@
 				<li class="@if($active == 'in_progress')active @endif"><a href="{{ URL::to('admin/in_progress') }}">Dose In Progress</a></li>
 				<li class="@if($active == 'completed')active @endif"><a href="{{ URL::to('admin/completed') }}">Completed Dose</a></li>
 				<li class="@if($active == 'inventory')active @endif"><a href="{{ URL::to('admin/inventory') }}">Inventory</a></li>
-				<li class="@if($active == 'user_mangement' || $active == 'user' || $active == 'customer')active @endif">
+				<li class="@if($active == 'user_mangement' || $active == 'user' || $active == 'customer' || $active == 'styler')active @endif">
 					<a aria-expanded="true" href="#">User Management<i class="fa arrow fa-fw"></i></a>
 					<ul aria-expanded="false" class="collapse">
                         <li class="@if($active == 'user')active @endif"><a href="{{ URL::to('admin/user') }}">Admin</a></li>

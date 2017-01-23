@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered queue-table datatable">
+                <table id="histiryDatatable" class="table table-striped table-bordered queue-table datatable">
                     <thead>
                         <tr>
                             <th style="width:3%" class="text-center">SL</th>
@@ -65,6 +65,22 @@
     </div>
     <!-- #row -->
 </div>
+<script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#histiryDatatable').DataTable({
+            'order': [ 0, 'desc'],
+            'aoColumns': [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                {'bSortable': true}
+            ]
+        });
+    });
+</script>
 @include('admin.styler.js.common_js')
 <!-- # page-content-wrapper -->
 @endsection

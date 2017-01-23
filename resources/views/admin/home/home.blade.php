@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered queue-table datatable">
+                <table id="histiryDatatable" class="table table-striped table-bordered queue-table datatable">
                     <thead>
                         <tr>
                             <th style="width:10%" class="text-center">ID</th>
@@ -91,6 +91,15 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
+<script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#histiryDatatable').DataTable({
+            columnDefs: [ 
+                { orderable: false, targets: [4,5] }
+            ]
+        });
+    });
+</script>
 <!-- # page-content-wrapper -->
 @include('admin.home.js.home_js')
 @endsection

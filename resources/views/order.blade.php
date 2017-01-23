@@ -1067,6 +1067,9 @@
         	dataArr['currentStyleRate'] = $("#wardrobe2").next('input').val();
 
         	dataArr['body_type'] = $("#body_type .shapeSelected").parent().find('h5').text();
+        	if(dataArr['body_type'] == 'Inverted Triangle'){
+        		dataArr['body_type'] = 'invt-triangle';
+        	}
         	
             if( dataArr['body_type'].length == 0 )
         	{

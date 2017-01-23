@@ -30,7 +30,7 @@ class StylerController extends Controller
     public function index()
     {
     	$stylers = Styler::select('stylers.*', 'countries.name as country')
-                        ->join('countries', 'stylers.country', '=', 'countries.code')
+                        ->leftJoin('countries', 'stylers.country', '=', 'countries.code')
                         ->orderBy('stylers.created_at', 'desc')
                         ->get();
         $this->data['stylers'] = $stylers;

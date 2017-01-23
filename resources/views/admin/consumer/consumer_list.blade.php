@@ -12,7 +12,7 @@
     <!-- Breacrumb -->
     <div class="row csk-breadcrumb">
         <div class="col-xs-9">
-            <h3 class="page-title">Total Customer:<span>{{ count($customers) }}</span></h3>
+            <h3 class="page-title">Consumer List</span></h3>
         </div>
     </div>
     <!-- # Breadcrumb -->
@@ -32,27 +32,22 @@
                 <table id="histiryDatatable" class="table table-striped table-bordered queue-table datatable">
                     <thead>
                         <tr>
-                            <th style="width:10%" class="text-center">SL</th>
-                            <th style="width:20%" class="text-center">Name</th>
-                            <th style="width:20%" class="text-center">Email</th>
-                            <th style="width:20%" class="text-center">Picture</th>
+                            <th style="width:5%" class="text-center">SL</th>
+                            <th style="width:25%" class="text-center">User Name</th>
+                            <th style="width:20%" class="text-center">Last Order Date</th>
+                            <th style="width:20%" class="text-center">Status</th>
                             <th style="width:30%" class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 0;?>
-                        @foreach($customers as $req)
-                        <?php $i++;?>
+                        <?php $i = 1;?>
+                        @foreach($order_info as $order)
                         <tr>
-                            <td>{{ $i }}</td>
-                            <td>{{ $req->name }}</td> 
-                            <td>{{ $req->email }}</td> 
-                            <td><img class="img-circle admin_list_img" src="{{ URL::asset('uploads/user_picture/'.$req->picture) }}" alt="{{$req->name}} image"></td>
-                            @if($req->active != 0)
-                                <td><a href="{{ URL::to('admin/block_customer/'.$req->id) }}" class="btn btn-danger block"><i class="fa fa-ban"></i> block</a></td>
-                            @else
-                                <td><a href="{{ URL::to('admin/unblock_customer/'.$req->id) }}" class="btn btn-primary unblock"><i class="fa fa-ban"></i> Unblock</a></td>
-                            @endif
+                            <td>{{ $i++ }}</td>
+                            <td>{{ $order->user }}</td> 
+                            <td>{{ date("d-M-y", strtotime($order->created_at)) }}</td> 
+                            <td>@if($order->process_status < 4) In progress @endif</td>
+                            <td><a href="{{ URL::to('admin/details/'.$order->id) }}" class="btn btn-danger"><i class="fa fa-link"></i> View Details</a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -67,6 +62,6 @@
         $('#histiryDatatable').DataTable();
     });
 </script>
-@include('admin.customer.js.common_js')
+{{-- @include('admin.admin_user.js.common_js') --}}
 <!-- # page-content-wrapper -->
 @endsection

@@ -52,7 +52,7 @@ class AuthController extends Controller
      */
     public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->scopes(['public_profile', 'email'])->asPopup()->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
     /**
@@ -65,7 +65,6 @@ class AuthController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-        echo Socialite::driver($provider)->response();
         $user = Socialite::driver($provider)->user();
 
         $authUser = $this->findOrCreateUser($user, $provider);
@@ -101,18 +100,9 @@ class AuthController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
 
-    public function user_login(Request $request)
+    public function check_user_email(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            echo 'success';
-        }else{
-            echo 'error';
-        }
-    }
-
-    public function check_user_email()
-    {
-        $authUser = User::where('email', Request::get('email'))->get();
+        $authUser = User::where('email', $request->email)->get();
         if (count($authUser) > 0) {
             echo 'false';
         }else{
@@ -120,13 +110,14 @@ class AuthController extends Controller
         }
     }
 
-    public function user_signup()
+    public function user_signup(Request $request)
     {
-        $data = Request::all();
-        User::create([
+        $data = $request->all();
+        $user = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        Auth::login($user, true);
         return redirect($this->redirectTo);
     }
 
@@ -153,7 +144,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
-
+    
     protected function sendFailedLoginResponse(Request $request)
     {
         if ($request->ajax()) {
