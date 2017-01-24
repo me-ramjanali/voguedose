@@ -411,7 +411,43 @@
         <div class="col-md-9 products-pagination text-right">
             <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-chevron-left"></i> Back</a>
             @if($order_info->process_status == 0)
-            <a id="assign" href="#" class="btn btn-success"><i class="fa fa-check-circle"></i> Assign</a>
+            <a id="assign" href="#" class="btn btn-success" data-toggle="modal" data-target="#accept-modal"><i class="fa fa-check-circle"></i> Assign</a>
+            <!-- #row -->
+            <?php 
+                $stylers = DB::table('stylers')
+                                ->select('stylers.*', 'countries.name as country')
+                                ->join('countries', 'stylers.country', '=', 'countries.code')
+                                ->get();
+            ?>
+            <div id="accept-modal" class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title text-center"><b>Stylists</b></h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="team-block row row-wide">
+                                @foreach($stylers as $styler)
+                                <!-- Team Person -->
+                                <div class="col-md-4 text-center" data-animation="flipInY">
+                                    <div class="team-person">
+                                        <img class="img-circle" src="{{ URL::asset('uploads/styler_picture/'.$styler->picture) }}" alt="{{ $styler->name }}">
+                                        <h3 class="name">{{ $styler->name }}</h3>
+                                        <h6 class="position">{{ $styler->country }}</h6>
+                                        <input type="hidden" id="styler_id" name="styler_id" value="{{ $styler->id }}">
+                                    </div>
+                                    <input type="hidden" id="dose_id" name="dose_id" value="{{ $order_info->order_id }}" />
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="text-align: center;">
+                            <button id="styler_modal_close" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button id="assign_to_styler" type="button" class="btn btn-success">Assign</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
             @endif
         </div>
     </div>

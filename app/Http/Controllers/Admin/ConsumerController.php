@@ -32,4 +32,9 @@ class ConsumerController extends Controller
         $this->data['active'] = 'consumer';
     	return view('admin/consumer/consumer_list')->with($this->data);
     }
+
+    public function show_user_history($user = null)
+    {
+        # code...
+    }
 }

@@ -65,6 +65,7 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::post('admin/edit_styler/{styler_id}', 'Admin\StylerController@update_styler');
 	Route::get('admin/delete_styler/{styler_id}', 'Admin\StylerController@delete_styler');
 	Route::get('admin/consumer', 'Admin\ConsumerController@index');
+	Route::get('admin/show_history/{user_id}', 'Admin\ConsumerController@show_user_history');
 });
 // styler section
 Route::get('styler/login', 'Styler\AuthController@showLoginForm')->middleware('stylerLoggedIn');
