@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $this->middleware('styler');
         $newOrders = Orders::select('orders.*', 'customer_name as user')
-                            ->where('process_status', 0)
+                            ->where('process_status', 1)
                             ->where('assign_to', Auth::guard('styler')->user()->id)
                             ->orderBy('created_at', 'desc')
                             ->get();

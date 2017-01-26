@@ -76,7 +76,7 @@ class OrderController extends Controller
 
     public function completed_orders(){
         $order_info = Orders::select('orders.*', 'customer_name as user')
-                            ->where('process_status', 4)
+                            ->where('process_status', 8)
                             ->orderBy('created_at', 'desc')
                             ->get();
         $this->data['order_info'] = $order_info;

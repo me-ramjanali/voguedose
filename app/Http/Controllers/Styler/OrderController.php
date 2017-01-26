@@ -21,7 +21,7 @@ class OrderController extends Controller
     {
         $this->middleware('styler');
         $newOrders = Orders::select('orders.*', 'customer_name as user')
-                            ->where('process_status', 0)
+                            ->where('process_status', 1)
                             ->where('assign_to', Auth::guard('styler')->user()->id)
                             ->orderBy('created_at', 'desc')
                             ->get();
@@ -79,7 +79,7 @@ class OrderController extends Controller
 
     public function completed_orders(){
         $order_info = Orders::select('orders.*', 'customer_name as user')
-                            ->where('process_status', 4)
+                            ->where('process_status', 8)
                             ->where('assign_to', Auth::guard('styler')->user()->id)
                             ->orderBy('created_at', 'desc')
                             ->get();
@@ -95,7 +95,7 @@ class OrderController extends Controller
             $request->session()->flash('message', 'Dose Completed!');
             $request->session()->flash('msg_class', 'success');
             Orders::where('id', $order_id)
-                                ->update(['process_status' => 4, 'complete_on' => date('Y-m-d H:i:s')]);
+                                ->update(['process_status' => 8, 'complete_on' => date('Y-m-d H:i:s')]);
             return redirect('styler/in_progress');
         }
         $request->session()->flash('message', 'Cannot complete Dose! No product added to dose.');

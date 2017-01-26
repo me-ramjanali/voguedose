@@ -44,7 +44,7 @@
                             <td>{{ date("d-M-y", strtotime($req->created_at)) }}</td> 
                             <td>{{ date("d-M-y", strtotime($req->target_date)) }}</td>
                             <td><a href="{{ URL::to('styler/details/'.$req->id) }}" class="btn btn-danger"><i class="fa fa-link"></i> View Details</a></td>
-                            @if($req->process_status == 0)
+                            @if($req->process_status == 1)
                             <td><a id="accept" href="{{ URL::to('styler/accept/'.$req->id) }}" class="btn btn-success"><i class="fa fa-check-circle"></i> Acceept</a></td>
                             <td><a id="reject" href="{{ URL::to('styler/reject/'.$req->id) }}" class="btn btn-inverse"><i class="fa fa-trash-o"></i>  Decline</a></td>
                             @endif

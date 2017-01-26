@@ -46,7 +46,7 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $order->user }}</td> 
                             <td>{{ date("d-M-y", strtotime($order->created_at)) }}</td> 
-                            <td>@if($order->process_status < 4) In progress @endif</td>
+                            <td>@if($order->process_status < 8) In progress @else Completed @endif</td>
                             <td><a href="{{ URL::to('admin/details/'.$order->id) }}" class="btn btn-danger"><i class="fa fa-link"></i> View Details</a></td>
                         </tr>
                         @endforeach

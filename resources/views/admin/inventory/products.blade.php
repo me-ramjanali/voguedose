@@ -208,7 +208,7 @@
 			<!-- Modal -->
 			<div id="feedbackModal_{{ $type->type.'_'.$i }}" class="modal fade bs-example-modal-lg" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel">
 				<div class="feedback-modal-dialog modal-dialog modal-lg" role="document">
-					<div class="modal-content" style="width: 50%;margin: 12% auto;">
+					<div class="modal-content" style="width: 70%;margin: 12% auto;">
 						<div class="modal-body">
 							<p class="modal-details-edit"><a class="edit_link" href="#" id="edit_{{ $type->type.'_'.$i }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></p>
 							<div class="feedback">

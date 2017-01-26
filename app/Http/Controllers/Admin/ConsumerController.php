@@ -35,6 +35,20 @@ class ConsumerController extends Controller
 
     public function show_user_history($user = null)
     {
-        # code...
+        // get user info
+        $user_info = User::where('id', $user)->first();
+        // get orders
+        $order_info = Orders::where('requested_by', $user)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        $accepted_orders = Orders::where('requested_by', $user)
+                            ->where(['process_status' => 6, 'process_status' => 8])
+                            ->count();
+        $this->data['order_info'] = $order_info;
+        $this->data['user_info'] = $user_info;
+        $this->data['accepted_orders'] = $accepted_orders;
+        $this->data['active'] = 'consumer';
+        return view('admin/consumer/user_order_history')->with($this->data);
     }
 }

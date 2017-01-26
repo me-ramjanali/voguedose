@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
         if(Auth::guard('styler')->check()){
             $newOrders = Orders::select('orders.*', 'customer_name as user')
-                                ->where('process_status', 0)
+                                ->where('process_status', 1)
                                 ->where('assign_to', Auth::guard('styler')->user()->id)
                                 ->orderBy('created_at', 'desc')
                                 ->get();
