@@ -155,4 +155,34 @@ class ProductController extends Controller
                 );
         echo '1';
     }
+
+    public function get_product_by_type(Request $request)
+    {
+        $html = '';
+        if($request->type != ''){
+            $products = Products::where('type', $request->type)->orderBy('created_at', 'desc')->get();
+            foreach($products as $product){
+                $images = [];
+                $has_frame = '';
+                $images_objects = json_decode($product->picture);
+                foreach($images_objects as $key => $value){
+                    array_push($images, $value);
+                }
+                if(count($images) > 1){
+                    $has_frame = 'has-frames';
+                }
+                $html .= '<div class="col-md-2 accepted-product-item">
+                            <div class="single-product '.$has_frame.'">
+                                <figure class="wpf-demo-6">
+                                    <img class="img-responsive" src="'.url('uploads/product_image/'.$images[0]).'" alt="Product Image">
+                                    <figcaption class="view-caption">
+                                        <a class="add_to_list">add to set</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>';
+            }
+        }
+        echo $html;
+    }
 }

@@ -219,7 +219,6 @@
 											<div id="carousel-example-generic_{{ $type->type.'_'.$i }}" class="carousel slide" data-ride="carousel">
 												<!-- Wrapper for slides -->
 												<div class="carousel-inner" role="listbox">
-													{{-- <img class="img-responsive" src="{{ URL::asset('uploads/product_image/'.$images[0]) }}" alt="Product Image"> --}}
 													<?php $j = 0;?>
 													@foreach($images as $image => $value)
 													<div class="item @if($j == 0) active @endif">

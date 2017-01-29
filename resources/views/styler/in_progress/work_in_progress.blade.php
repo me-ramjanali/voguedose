@@ -26,14 +26,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered queue-table datatable">
+                <table id="histiryDatatable" class="table table-striped table-bordered queue-table datatable">
                     <thead>
                         <tr>
                             <th style="width:10%" class="text-center">ID</th>
                             <th style="width:20%" class="text-center">User</th>
                             <th style="width:20%" class="text-center">Order Date</th>
                             <th style="width:20%" class="text-center">Target Delevary</th>
-                            <th style="width:30%" class="text-center" colspan="3">Action</th>
+                            <th style="width:30%" class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,10 +43,12 @@
                             <td>{{ $req->user }}</td> 
                             <td>{{ date("d-M-y", strtotime($req->created_at)) }}</td> 
                             <td>{{ date("d-M-y", strtotime($req->target_date)) }}</td>
-                            <td><a href="{{ URL::to('styler/details/'.$req->id) }}" class="btn btn-danger"><i class="fa fa-link"></i> View Details</a></td>
-                            @if($req->process_status < 4)
-                                <td><a id="complete" href="{{ URL::to('styler/complete/'.$req->id) }}" class="btn btn-success"><i class="fa fa-check-circle"></i> Complete</a></td>
-                            @endif
+                            <td>
+                                <a href="{{ URL::to('styler/details/'.$req->id) }}" class="btn btn-danger"><i class="fa fa-link"></i> View Details</a>
+                                @if($req->process_status < 4)
+                                    <a id="complete" href="{{ URL::to('styler/complete/'.$req->id) }}" class="btn btn-success"><i class="fa fa-check-circle"></i> Complete</a>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -56,6 +58,11 @@
     </div>
     <!-- #row -->
 </div>
+<script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#histiryDatatable').DataTable();
+    });
+</script>
 <!-- # page-content-wrapper -->
 @include('styler.in_progress.js.in_progress_js')
 @endsection

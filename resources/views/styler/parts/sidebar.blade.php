@@ -10,6 +10,7 @@
 				<li class="@if($active == 'in_progress')active @endif"><a href="{{ URL::to('styler/in_progress') }}">Work In Progress</a></li>
 				<li class="@if($active == 'completed')active @endif"><a href="{{ URL::to('styler/completed') }}">Completed Requests</a></li>
 				<li class="@if($active == 'inventory')active @endif"><a href="{{ URL::to('styler/inventory') }}">Inventory</a></li>
+				<li class="@if($active == 'cloth_set')active @endif"><a href="{{ URL::to('styler/cloth_set') }}">Manage Cloth Set</a></li>
 			</ul>
 		</nav>
 	</aside>

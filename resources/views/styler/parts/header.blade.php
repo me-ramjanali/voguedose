@@ -10,6 +10,7 @@
     <!-- Icon -->
     <link rel="icon" href="{{ URL::asset('images/favicon.png') }}">
     <link href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/bootstrap-multiselect-master/dist/css/bootstrap-multiselect.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('assets/animate.css-master/animate.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/media-query.css') }}">
 

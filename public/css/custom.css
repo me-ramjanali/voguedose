@@ -587,7 +587,7 @@
   padding-left: 0px !important;
 }
 .add-new-button .modal-body {
-  padding: 50px !important;
+  padding: 50px;
 }
 .add-new-button .form-group {
   margin-bottom: 3px !important;
@@ -746,4 +746,13 @@ span.error, small.error {
 }
 .admin_list_img {
   width: 70px !important;
+}
+.divider {
+    background-color: #e5e5e5;
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+}
+.cloth-set-modal-body {
+  padding: 10px !important;
 }

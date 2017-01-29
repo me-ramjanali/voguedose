@@ -89,6 +89,8 @@ Route::group(['middleware' => ['styler']], function () {
 	Route::post('styler/get_dose_no', 'Styler\ProductController@get_dose_no');
 	Route::post('styler/check_order_no', 'Styler\ProductController@check_order_no');
 	Route::post('styler/add_to_list', 'Styler\ProductController@add_to_list');
+	Route::get('styler/cloth_set', 'styler\ClothSetController@index');
+	Route::post('styler/get_product_by_type', 'styler\ProductController@get_product_by_type');
 	Route::get('styler/completed', 'Styler\OrderController@completed_orders');
 	Route::get('styler/complete/{id}', 'Styler\OrderController@order_complete');
 	Route::get('styler/profile', 'Styler\ProfileController@my_profile');
