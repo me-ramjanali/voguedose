@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"product",
+				"product_id"
+			],
+			[
+				"sele",
+				"selected_products"
+			],
+			[
+				"produ",
+				"product_id"
+			],
+			[
+				"add",
+				"add_product"
+			],
+			[
+				"padin",
+				"padding-left"
+			],
+			[
 				"aja",
 				"ajax\t$.ajax()"
 			],
@@ -140,10 +160,6 @@
 				"width"
 			],
 			[
-				"add",
-				"addClass\t.addClass()"
-			],
-			[
 				"va",
 				"value\tAttr"
 			],
@@ -233,7 +249,7 @@
 			"file": "/D/xampp/htdocs/voguedose/app/Http/Controllers/Styler/ProductController.php",
 			"settings":
 			{
-				"buffer_size": 7098,
+				"buffer_size": 7133,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -242,7 +258,7 @@
 			"file": "/D/xampp/htdocs/voguedose/resources/views/styler/cloth_set/cloth_set.blade.php",
 			"settings":
 			{
-				"buffer_size": 6768,
+				"buffer_size": 8556,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -266,14 +282,6 @@
 			}
 		},
 		{
-			"contents": "<?php \n    $i = 0;\n    $products = DB::table('products')->where('type', $type->type)->orderBy('created_at', 'desc')->get();\n?>\n@foreach($products as $product)\n<?php \n    $images = [];\n    $images_objects = json_decode($product->picture);$i++;\n    foreach($images_objects as $key => $value){\n        array_push($images, $value);\n    }\n?>\n<div class=\"single-product @if(count($images) > 1) has-frames @endif\">\n    <figure class=\"wpf-demo-6\">\n        <img class=\"img-responsive\" src=\"{{ URL::asset('uploads/product_image/'.$images[0]) }}\" alt=\"Product Image\">\n        <figcaption class=\"view-caption\">\n            <a data-toggle=\"modal\" data-target=\"#feedbackModal_{{ $type->type.'_'.$i }}\">Expand</a>\n        </figcaption>\n    </figure>\n</div>\n@endforeach",
-			"settings":
-			{
-				"buffer_size": 753,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "/D/xampp/htdocs/voguedose/resources/views/styler/inventory/products.blade.php",
 			"settings":
 			{
@@ -286,7 +294,7 @@
 			"file": "/D/xampp/htdocs/voguedose/public/css/custom.css",
 			"settings":
 			{
-				"buffer_size": 15545,
+				"buffer_size": 15632,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -393,6 +401,7 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Analyzen-BD/Desktop/advertisement_table.sql",
 		"/D/xampp/htdocs/voguedose/public/js/buttonselect.js",
 		"/D/xampp/htdocs/voguedose/resources/views/admin/parts/header.blade.php",
 		"/D/xampp/htdocs/voguedose/resources/views/admin/parts/footer.blade.php",
@@ -519,8 +528,7 @@
 		"/D/xampp/htdocs/voguedose/app/Http/Kernel.php",
 		"/C/Users/Analyzen-BD/Desktop/home.blade.php",
 		"/D/xampp/htdocs/voguedose/resources/views/admin/in_progress/js/in_progress_js.blade.php",
-		"/D/xampp/htdocs/voguedose/resources/views/admin/inventory/js/common_js.blade.php",
-		"/D/xampp/htdocs/voguedose/resources/views/admin/inventory/js/product_edit_js.blade.php"
+		"/D/xampp/htdocs/voguedose/resources/views/admin/inventory/js/common_js.blade.php"
 	],
 	"find":
 	{
@@ -715,7 +723,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -737,13 +745,15 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 528.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -752,15 +762,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7098,
+						"buffer_size": 7133,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5857,
-								5857
+								6877,
+								6887
 							]
 						],
 						"settings":
@@ -771,10 +781,10 @@
 							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3322.0,
+						"translation.y": 3520.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -783,15 +793,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6768,
+						"buffer_size": 8556,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2740,
-								2740
+								8424,
+								8424
 							]
 						],
 						"settings":
@@ -803,7 +813,7 @@
 							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 462.0,
+						"translation.y": 3190.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -834,7 +844,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -864,39 +874,11 @@
 						"translation.y": 66.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 753,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								741,
-								337
-							]
-						],
-						"settings":
-						{
-							"default_dir": "D:\\xampp\\htdocs\\voguedose",
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 66.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
 					"file": "/D/xampp/htdocs/voguedose/resources/views/styler/inventory/products.blade.php",
 					"semi_transient": false,
 					"settings":
@@ -922,24 +904,24 @@
 						"translation.y": 4180.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 7,
 					"file": "/D/xampp/htdocs/voguedose/public/css/custom.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15545,
+						"buffer_size": 15632,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15525,
-								15525
+								15630,
+								15630
 							]
 						],
 						"settings":
@@ -949,14 +931,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 16456.0,
+						"translation.y": 16422.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 8,
 					"file": "/D/xampp/htdocs/voguedose/app/Http/routes.php",
 					"semi_transient": false,
 					"settings":
@@ -981,7 +963,7 @@
 						"translation.y": 1848.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
