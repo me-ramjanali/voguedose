@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer" style="clear: both;text-align: right;">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="button" id="set_modal_close" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Make set</button>
                             </div>
                         </form>
@@ -154,9 +154,17 @@
                 $('#selected_ids').val(product_id);
             }
             html_block = $(this).closest('.accepted-product-item').html();
-            $('#selected_products').find('p').remove();
+            $('#selected_products').find('p').hide();
             $('#selected_products').prepend('<div class="col-md-2 accepted-product-item">'+html_block+'</div>');
         });
+
+        $('#set_modal_close').on('click', function(){
+            $('#selected_ids').val('');
+            $('#selected_products').find('p').show();
+            default_html = $('#selected_products').find('p');
+            $('#selected_products').html(default_html);
+        });
+
     });
 </script>
 <!-- # page-content-wrapper -->
