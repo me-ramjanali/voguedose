@@ -35,14 +35,18 @@
                                     <div role="separator" class="divider"></div>
                                     <h4>Choose Products</h4>
                                     <div role="separator" class="divider"></div>
-                                    <div id="products" class="row"><p class="text text-help">No product loaded. Select type from avobe to load products.</p></div>
+                                    <div id="products" class="row"><p class="text text-help pad-left no-margin-top-p">No product loaded. Select type from avobe to load products.</p></div>
                                     <div class="clearfix"></div>
                                     <div role="separator" class="divider"></div>
                                     <h3>Selected Products</h3>
+                                    <div id="selected_products" class="row">
+                                        <p class="text text-help pad-left no-margin-top-p">No product selected.</p>
+                                        <input type="hidden" name="selected_ids" id="selected_ids" value="" />
+                                    </div>
                                     <div role="separator" class="divider"></div>
                                 </div>
                             </div>
-                            <div class="modal-footer" style="clear: both;text-align: right;border-top: none;padding-top: 35px;">
+                            <div class="modal-footer" style="clear: both;text-align: right;">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Make set</button>
                             </div>
@@ -124,12 +128,34 @@
             })
             .done(function(data) {
                 // console.log(data);
-                $('#products').html(data);
+                if(data == ''){
+                    $('#products').html('<p class="text text-help pad-left no-margin-top-p">No product loaded. Select type from avobe to load products.</p>');    
+                }else{
+                    $('#products').html(data);    
+                }
+                
             })
             .fail(function() {
                 alert("Something went wrong! please try again later.");
             })
-            
+        });
+        $(document).on('click', '.add_to_list', function(){
+            product_id = $(this).data('product_id');
+            if($('#selected_ids').val() != ''){
+                product_ids = $('#selected_ids').val().split(',');
+                for (var i = 0; i < product_ids.length; i++) {
+                    if(product_ids[i] == product_id){
+                        alert('Product is already added');
+                        return false;
+                    }
+                }
+                $('#selected_ids').val($('#selected_ids').val()+','+product_id);
+            }else{
+                $('#selected_ids').val(product_id);
+            }
+            html_block = $(this).closest('.accepted-product-item').html();
+            $('#selected_products').find('p').remove();
+            $('#selected_products').prepend('<div class="col-md-2 accepted-product-item">'+html_block+'</div>');
         });
     });
 </script>

@@ -176,7 +176,7 @@ class ProductController extends Controller
                                 <figure class="wpf-demo-6">
                                     <img class="img-responsive" src="'.url('uploads/product_image/'.$images[0]).'" alt="Product Image">
                                     <figcaption class="view-caption">
-                                        <a class="add_to_list">add to set</a>
+                                        <a class="add_to_list" data-product_id="'.$product->id.'">add to set</a>
                                     </figcaption>
                                 </figure>
                             </div>

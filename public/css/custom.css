@@ -756,3 +756,9 @@ span.error, small.error {
 .cloth-set-modal-body {
   padding: 10px !important;
 }
+.pad-left {
+  padding-left: 15px;
+}
+.no-margin-top-p {
+  margin-top: 0px !important;
+}
