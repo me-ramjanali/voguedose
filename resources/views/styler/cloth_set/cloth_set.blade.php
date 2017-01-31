@@ -44,11 +44,16 @@
                                         <input type="hidden" name="selected_ids" id="selected_ids" value="" />
                                     </div>
                                     <div role="separator" class="divider"></div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="set_name" id="set_name" placeholder="Enter set name" style="display: none;">
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer" style="clear: both;text-align: right;">
                                 <button type="button" id="set_modal_close" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">Make set</button>
+                                <button id="make_set" type="submit" class="btn btn-success ladda-button" data-style="expand-right">
+                                    <span class="ladda-label">Make set</span>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -129,7 +134,7 @@
             .done(function(data) {
                 // console.log(data);
                 if(data == ''){
-                    $('#products').html('<p class="text text-help pad-left no-margin-top-p">No product loaded. Select type from avobe to load products.</p>');    
+                    $('#products').html('<p class="text text-help pad-left no-margin-top-p">No product loaded. Select type from avobe to load products.</p>');
                 }else{
                     $('#products').html(data);    
                 }
@@ -154,15 +159,64 @@
                 $('#selected_ids').val(product_id);
             }
             html_block = $(this).closest('.accepted-product-item').html();
+            $html_block = $(html_block)
+            $html_block.find('a').removeClass('add_to_list');
+            $html_block.find('a').addClass('remove_from_list');
+            $html_block.find('a').text('remove');
+            html_block = $html_block[0].outerHTML;
             $('#selected_products').find('p').hide();
             $('#selected_products').prepend('<div class="col-md-2 accepted-product-item">'+html_block+'</div>');
+            $('#set_name').show();
         });
 
         $('#set_modal_close').on('click', function(){
+            $('#product_type').val("");
+            $('#products').html('<p class="text text-help pad-left no-margin-top-p">No product loaded. Select type from avobe to load products.</p>');
             $('#selected_ids').val('');
             $('#selected_products').find('p').show();
             default_html = $('#selected_products').find('p');
             $('#selected_products').html(default_html);
+            $('#set_name').hide();
+        });
+
+        $(document).on('click', '.remove_from_list', function(){
+            product_id = $(this).data('product_id');
+            product_id_array = $('#selected_ids').val().split(',');
+            index = product_id_array.indexOf(product_id);
+            product_id_array.splice(index, 1);
+            $(this).closest('.single-product').remove();
+            $('#selected_ids').val(product_id_array.join())
+        });
+
+        $(document).on('click', '#make_set', function(){
+            if($('#set_name').val() == ''){
+                alert('Please set name');
+                $('#set_name').parent().addClass('has-error');
+                $('#set_name').focus();
+                return false;
+            }else{
+                $('#set_name').parent().removeClass('has-error');
+            }
+            var l = Ladda.create(document.querySelector( '#make_set' ));
+            l.start();
+            product_id_values = $('#selected_ids').val();
+            $.ajax({
+                url: '{{ url('styler/create_set') }}',
+                type: 'POST',
+                data: {product_ids: product_id_values},
+            })
+            .done(function(data) {
+                console.log(data);
+                // if(data == ''){
+                //     $('#products').html('<p class="text text-help pad-left no-margin-top-p">No product loaded. Select type from avobe to load products.</p>');
+                // }else{
+                //     $('#products').html(data);    
+                // }
+                
+            })
+            .fail(function() {
+                alert("Something went wrong! please try again later.");
+            })
         });
 
     });

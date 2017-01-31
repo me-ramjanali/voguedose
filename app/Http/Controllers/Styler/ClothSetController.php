@@ -34,4 +34,9 @@ class ClothSetController extends Controller
     	$this->data['ClothSets'] = ClothSets::orderBy('id', 'desc')->get();
     	return view('styler/cloth_set/cloth_set')->with($this->data);
     }
+
+    public function create_set(Request $request)
+    {
+        print_r($request->all());
+    }
 }
