@@ -31,12 +31,27 @@ class ClothSetController extends Controller
     {
     	$this->data['active'] = 'cloth_set';
     	$this->data['types'] = $product->getAllTypes();
-    	$this->data['ClothSets'] = ClothSets::orderBy('id', 'desc')->get();
+    	$this->data['clothsets'] = ClothSets::orderBy('id', 'desc')->get();
     	return view('styler/cloth_set/cloth_set')->with($this->data);
     }
 
     public function create_set(Request $request)
     {
-        print_r($request->all());
+        $data = array(
+                    'name' => $request->name,
+                    'product_codes' => $request->product_codes,
+                );
+        ClothSets::create($data);
+        echo 'true';
+    }
+
+    public function update_set(Request $request)
+    {
+        $data = array(
+                    'name' => $request->name,
+                    'product_codes' => $request->product_codes,
+                );
+        ClothSets::where('id', $request->set_id)->update($data);
+        echo 'true';
     }
 }

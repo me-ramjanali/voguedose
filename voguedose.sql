@@ -45,15 +45,17 @@ DROP TABLE IF EXISTS `cloth_sets`;
 CREATE TABLE `cloth_sets` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `product_ids` text COLLATE utf8_unicode_ci NOT NULL,
+  `product_codes` text COLLATE utf8_unicode_ci NOT NULL,
   `order_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `clothsets_name_unique` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `cloth_sets` */
+
+insert  into `cloth_sets`(`id`,`name`,`product_codes`,`order_id`,`created_at`,`updated_at`) values (1,'test','tb0002,tb0001','','2017-02-01 09:11:23','2017-02-01 11:39:19');
 
 /*Table structure for table `countries` */
 

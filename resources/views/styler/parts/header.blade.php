@@ -30,6 +30,7 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/responsive.css') }}">
     
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/csk.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/ladda-themeless.min.css') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,6 +39,8 @@
     <![endif]-->
     <script type="text/javascript" src="{{ URL::asset('assets/jquery-1.12.4/jquery-1.12.4.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ URL::asset('js/spin.min.js') }}"></script>
+    <script src="{{ URL::asset('js/ladda.min.js') }}"></script>
     <script>
         var site_url = '{{ URL::to("/") }}';
     </script>
