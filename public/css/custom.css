@@ -645,9 +645,9 @@
 .file_field .checkbox input {
   width: auto !important;
 }
-.auto_sug_input {
+/*.auto_sug_input {
   width: 250px !important;
-}
+}*/
 
 #result {
   height:20px;
@@ -761,4 +761,11 @@ span.error, small.error {
 }
 .no-margin-top-p {
   margin-top: 0px !important;
+}
+.no-pad {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+#set_name_order_id label {
+  padding-top: 3px !important;
 }

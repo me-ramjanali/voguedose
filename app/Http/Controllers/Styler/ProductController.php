@@ -116,7 +116,7 @@ class ProductController extends Controller
     public function get_dose_no(Request $request){
         if(!empty($request->queryString)){
             $order_info = Orders::select('customer_name', 'order_id')
-                                ->where('order_id', 'like', '%'.json_decode($request->queryString).'%')
+                                ->where('order_id', 'like', '%'.trim(json_decode($request->queryString)).'%')
                                 ->where('process_status', 2)
                                 ->where('assign_to', Auth::guard('styler')->user()->id)
                                 ->orderBy('created_at', 'desc')
@@ -124,7 +124,7 @@ class ProductController extends Controller
             if(count($order_info) > 0) {
                 echo '<ul>';
                     foreach ($order_info as $result) {
-                        echo '<li onClick="fill(\''.addslashes($result->order_id).'\', \''.$request->counter.'\');">'.$result->order_id.' - ('.$result->customer_name.')</li>';
+                        echo '<li onClick="fill(\''.addslashes($result->order_id).'\');">'.$result->order_id.' - ('.$result->customer_name.')</li>';
                     }
                 echo '</ul>';
             }else{
@@ -190,7 +190,7 @@ class ProductController extends Controller
     {
         $html = '';
         if($request->type != ''){
-            $products = Products::select('products.*')->join('cloth_sets', DB::raw('FIND_IN_SET(products.code, cloth_sets.product_ids)'))->where('type', $request->type)->orderBy('created_at', 'desc')->get();
+            $products = Products::where('type', $request->type)->orderBy('created_at', 'desc')->get();
             foreach($products as $product){
                 $images = [];
                 $has_frame = '';

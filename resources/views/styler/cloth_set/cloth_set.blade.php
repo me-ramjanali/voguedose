@@ -44,9 +44,24 @@
                                         <input type="hidden" name="selected_ids" id="selected_ids" value="" />
                                     </div>
                                     <div role="separator" class="divider"></div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="set_name" id="set_name" placeholder="Enter set name" style="display: none;">
+                                    <div class="row" id="set_name_order_id" style="display: none;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4 no-pad pad-left text-right" for="set_name">Enter Set name</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="set_name" id="set_name" placeholder="Enter set name">
+                                            </div>
+                                        </div>
+                                        <div id="suggest" class="form-group col-md-6">
+                                            <label class="col-md-4 no-pad pad-left text-right" for="order_no">Add to</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control auto_sug_input" type="text" id="order_no" name="order_no" placeholder="Type Dose ID" />
+                                            </div>
+                                            <div id="suggestions" class="suggestionsBox" style="display: none;">
+                                                <div id="suggestionsList" class="suggestionList"></div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="modal-footer" style="clear: both;text-align: right;">
@@ -95,10 +110,10 @@
                         <td>{{ $clothset->name }}</td> 
                         <td>{{ $clothset->product_codes }}</td> 
                         <td>{{ $clothset->order_id }}</td>
-                        <td style="text-align: left;">
+                        <td>
                             <button data-toggle="modal" data-target="#editMyModal{{$i}}" class="btn btn-danger"><i class="fa fa-link"></i> View and edit</button>
                             <!-- Modal -->
-                            <div class="modal fade" id="editMyModal{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" style="margin-top: 50px;">
+                            <div class="modal fade" id="editMyModal{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" style="margin-top: 50px;text-align: left;">
                                 <div class="feedback-modal-dialog modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <form class="form-horizontal" id="add_product" method="post" enctype="multipart/form-data">
@@ -171,9 +186,9 @@
                                     </div>
                                 </div>
                             </div>
-                            @if($clothset->order_id == '')
+                            {{-- @if($clothset->order_id == '')
                             <a href="{{ URL::to('styler/add_to_list/'.$clothset->id) }}" class="btn btn-success"><i class="fa fa-tasks"></i> Add to Dose</a>
-                            @endif
+                            @endif --}}
                         </td>
                     </tr>
                     <?php $i++;?>
@@ -185,8 +200,34 @@
     <!-- #row -->
 </div>
 <script type="text/javascript" class="init">
+    function suggest(inputString, input){
+        if(inputString.length == 0) {
+            $('#suggestions').fadeOut();
+        } else {
+            input.addClass('load');
+            $.post("{{ url('styler/get_dose_no') }}", {'queryString': JSON.stringify(inputString), '_token': "{{ csrf_token() }}"}, function(data){
+                if(data.length >0) {
+                    $('#suggestions').fadeIn();
+                    $('#suggestionsList').html(data);
+                    input.removeClass('load');
+                }
+            });
+        }
+    }
+
+    function fill(thisValue) {
+        $('input#order_no').val(thisValue);
+        $('input#order_no').closest('.form-group').removeClass('has-error');
+        $('.add_product').prop('disabled', false).text('Add');
+        setTimeout("$('#suggestions').fadeOut();", 200);
+    }
     $(document).ready(function() {
         $('#histiryDatatable').DataTable();
+
+        $('.auto_sug_input').on('keyup', function(){
+            id = $(this).attr('id')
+            suggest($(this).val(), $(this));
+        });
 
         $.ajaxSetup({
             headers:
@@ -238,7 +279,7 @@
             html_block = $html_block[0].outerHTML;
             $('#selected_products').find('p').hide();
             $('#selected_products').prepend('<div class="col-md-2 accepted-product-item">'+html_block+'</div>');
-            $('#set_name').show();
+            $('#set_name_order_id').show();
         });
 
         $('#set_modal_close').on('click', function(){
@@ -248,7 +289,7 @@
             $('#selected_products').find('p').show();
             default_html = $('#selected_products').find('p');
             $('#selected_products').html(default_html);
-            $('#set_name').hide();
+            $('#set_name_order_id').hide();
         });
 
         $(document).on('click', '.remove_from_list', function(){
@@ -273,6 +314,16 @@
             }else{
                 $('#set_name').parent().removeClass('has-error');
             }
+
+            if($('#order_no').val() == ''){
+                alert('Please enter dose id');
+                $('#order_no').parent().addClass('has-error');
+                $('#order_no').focus();
+                return false;
+            }else{
+                $('#order_no').parent().removeClass('has-error');
+            }
+
             var l = Ladda.create(document.querySelector( '#make_set' ));
             l.start();
             product_code_values = $('#selected_ids').val();
